@@ -1,0 +1,12 @@
+{
+  "name": "contraster",
+  "version": "1.0.0",
+  "description": "Color contrast checker.",
+  "main": "code.js",
+  "scripts": {},
+  "author": "João Palmeiro",
+  "license": "MIT",
+  "devDependencies": {
+    "prettier": "^2.2.1"
+  }
+}
