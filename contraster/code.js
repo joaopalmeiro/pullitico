@@ -2,10 +2,31 @@ figma.showUI(__html__);
 
 let foregroundColor;
 let foregroundAlpha;
-let backgoundColor;
+let backgroundColor;
+
+function convertRgbToHex(color) {
+  const hex = color
+    .map((col) => {
+      // Hexadecimal numbers (base 16)
+      const hexColor = col.toString(16);
+      return `0${hexColor}`.slice(-2);
+    })
+    .join('');
+  return `#${hex}`;
+}
 
 function calculateLuminance(color) {
-  return 1;
+  // Source: https://www.w3.org/WAI/GL/wiki/Relative_luminance
+  const normalizedColor = color.map((channel) => channel / 255);
+
+  const gammaCorrectedRGB = normalizedColor.map((channel) =>
+    channel <= 0.03928 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4)
+  );
+
+  const luminance =
+    gammaCorrectedRGB[0] * 0.2126 + gammaCorrectedRGB[1] * 0.7152 + gammaCorrectedRGB[2] * 0.0722;
+
+  return luminance;
 }
 
 function getRGB({ r, g, b }) {
@@ -14,18 +35,27 @@ function getRGB({ r, g, b }) {
   return rgbColorArray;
 }
 
-function calculateContrast(foregroundColor, backgroundColor) {
-  const foregroundLuminance = calculateLuminance(foregroundColor);
-  const backgroundLuminance = calculateLuminance(backgroundColor);
-  return foregroundLuminance / backgroundLuminance;
+function calculateContrast(foreground, background) {
+  const foregroundLuminance = calculateLuminance(foreground) + 0.05;
+  const backgroundLuminance = calculateLuminance(background) + 0.05;
+  let contrast = foregroundLuminance / backgroundLuminance;
+
+  if (backgroundLuminance > foregroundLuminance) {
+    contrast = 1 / contrast;
+  }
+
+  // Round to two decimal places
+  contrast = Math.floor(contrast * 100) / 100;
+
+  return contrast;
 }
 
 // Sending results to the UI
 function sendContrastInfo(contrast, foregroundColor, backgroundColor) {
   figma.ui.postMessage({
     type: 'selectionChange',
-    foreground: foregroundColor,
-    background: backgroundColor,
+    foreground: convertRgbToHex(foregroundColor),
+    background: convertRgbToHex(backgroundColor),
     contrast,
   });
 }
