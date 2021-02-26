@@ -35,7 +35,60 @@ function getRGB({ r, g, b }) {
   return rgbColorArray;
 }
 
-function calculateContrast(foreground, background) {
+// Opacity
+function overlay(foreground, alpha, background) {
+  if (alpha >= 1) {
+    return foreground;
+  }
+
+  const overlaid = foreground.map((channel, i) =>
+    Math.round(channel * alpha + background[i] * (1 - alpha))
+  );
+
+  return overlaid;
+}
+
+function getContrastScores(contrast) {
+  let largeText;
+  let normalText;
+
+  switch (true) {
+    case contrast > 7:
+      largeText = 'AAA';
+      normalText = 'AAA';
+      break;
+    case contrast > 4.5:
+      largeText = 'AAA';
+      normalText = 'AA';
+      break;
+    case contrast > 3:
+      largeText = 'AA';
+      normalText = 'FAIL';
+      break;
+    default:
+      largeText = 'FAIL';
+      normalText = 'FAIL';
+      break;
+  }
+  return { largeText, normalText };
+}
+
+// Sending results to the UI
+function sendContrastInfo(contrast, foreground, background) {
+  figma.ui.postMessage({
+    type: 'selectionChange',
+    foreground: convertRgbToHex(foreground),
+    background: convertRgbToHex(background),
+    contrast,
+    scores: getContrastScores(contrast),
+  });
+}
+
+function calculateContrast(foreground, alpha, background) {
+  if (alpha < 1) {
+    foreground = overlay(foreground, alpha, background);
+  }
+
   const foregroundLuminance = calculateLuminance(foreground) + 0.05;
   const backgroundLuminance = calculateLuminance(background) + 0.05;
   let contrast = foregroundLuminance / backgroundLuminance;
@@ -50,16 +103,6 @@ function calculateContrast(foreground, background) {
   return contrast;
 }
 
-// Sending results to the UI
-function sendContrastInfo(contrast, foregroundColor, backgroundColor) {
-  figma.ui.postMessage({
-    type: 'selectionChange',
-    foreground: convertRgbToHex(foregroundColor),
-    background: convertRgbToHex(backgroundColor),
-    contrast,
-  });
-}
-
 figma.on('selectionchange', () => {
   if (figma.currentPage.selection.length > 1) {
     // Find nodes with fills that are of type SOLID
@@ -72,9 +115,10 @@ figma.on('selectionchange', () => {
 
     // The channel values have been normalized to be between 0 and 1
     foregroundColor = getRGB(fills[0].color);
+    foregroundAlpha = fills[0].opacity;
     backgroundColor = getRGB(fills[1].color);
 
-    const contrast = calculateContrast(foregroundColor, backgroundColor);
+    const contrast = calculateContrast(foregroundColor, foregroundAlpha, backgroundColor);
 
     sendContrastInfo(contrast, foregroundColor, backgroundColor);
   } else {
