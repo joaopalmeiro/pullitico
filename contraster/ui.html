@@ -1,22 +1,61 @@
 <!-- `iframe` -->
-<div id="background">
-  <h3 id="foreground">The quick brown fox</h3>
+<style>
+  .FAIL {
+    color: #f34242;
+  }
+  .AA {
+    color: #6bbe96;
+  }
+  .AAA {
+    color: #00da71;
+  }
+</style>
+<div id="background" class="background-color">
+  <h3 class="foreground-color">The quick brown fox</h3>
+  <h2 class="foreground-color">The quick brown fox</h2>
 </div>
 <h2 id="contrast"></h2>
 <button id="swap">Swap</button>
+<h4>Normal text:<span id="largeTextScore"></span></h4>
+<h3>Normal text:<span id="normalTextScore"></span></h3>
 <script>
+  function changeText(id, text) {
+    const element = document.getElementById(id);
+    element.textContent = text;
+    return element;
+  }
+
+  function changeColor(classname, color) {
+    const elements = document.getElementsByClassName(classname);
+
+    for (let i = 0; i < elements.length; i++) {
+      if (elements[i].localName === 'div') {
+        elements[i].style = `background-color: ${color};`;
+      } else {
+        elements[i].style = `color: ${color};`;
+      }
+    }
+  }
+
+  function updateScores(id, score) {
+    const element = document.getElementById(id);
+    element.className = score;
+    element.textContent = score;
+    return element;
+  }
+
   window.onmessage = async (event) => {
     const message = event.data.pluginMessage;
     console.log(message);
 
     if (message.type === 'selectionChange') {
-      const background = document.getElementById('background');
-      const foreground = document.getElementById('foreground');
-      const contrast = document.getElementById('contrast');
+      changeColor('background-color', message.background);
+      changeColor('foreground-color', message.foreground);
 
-      background.style = `background-color: ${message.background};`;
-      foreground.style = `color: ${message.foreground};`;
-      contrast.textContent = message.contrast;
+      changeText('contrast', message.contrast);
+
+      updateScores('normalTextScore', message.scores.normalText);
+      updateScores('largeTextScore', message.scores.largeText);
     }
   };
   document.getElementById('swap').onclick = () => {

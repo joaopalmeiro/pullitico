@@ -20,3 +20,4 @@
 - [Heroicons](https://heroicons.com/).
 - [Figma Plugin Tutorial (4/6)](https://alcohollick.com/writing/figma-plugin-tutorial-4-6).
 - [Figma Plugin Tutorial (5/6)](https://alcohollick.com/writing/figma-plugin-tutorial-5-6).
+- [Figma Plugin Tutorial (6/6)](https://alcohollick.com/writing/figma-plugin-tutorial-6-6).

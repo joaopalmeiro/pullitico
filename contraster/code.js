@@ -1,10 +1,7 @@
-figma.showUI(__html__);
-
-let foregroundColor;
-let foregroundAlpha;
-
-let backgroundColor;
-let backgroundAlpha;
+let foregroundColor = [52, 45, 53];
+let backgroundColor = [255, 255, 255];
+let foregroundAlpha = 1;
+let backgroundAlpha = 1;
 
 function convertRgbToHex(color) {
   const hex = color
@@ -34,6 +31,7 @@ function calculateLuminance(color) {
 function getRGB({ r, g, b }) {
   // Round each channel to the nearest integer
   const rgbColorArray = [r, g, b].map((channel) => Math.round(channel * 255));
+
   return rgbColorArray;
 }
 
@@ -72,6 +70,7 @@ function getContrastScores(contrast) {
       normalText = 'FAIL';
       break;
   }
+
   return { largeText, normalText };
 }
 
@@ -105,16 +104,30 @@ function calculateAndSendContrast(foreground, alpha, background) {
   return sendContrastInfo(contrast, foreground, background);
 }
 
+function findFills(nodes) {
+  // Find nodes with fills that are of type SOLID
+  const nodesWithFills = nodes.filter(
+    (node) => node.fills && node.fills.length > 0 && node.fills[0].type === 'SOLID'
+  );
+
+  // More info: https://www.figma.com/plugin-docs/api/properties/figma-notify/
+  if (nodesWithFills.length <= 0) {
+    return figma.notify('Please select a layer that has a solid fill.', {
+      // How long the notification stays up before closing
+      timeout: 1000,
+    });
+  }
+
+  // Filter out the first fills of each node
+  const fills = nodesWithFills.map((node) => node.fills[0]);
+
+  return fills;
+}
+
 figma.on('selectionchange', () => {
-  if (figma.currentPage.selection.length > 1) {
-    // Find nodes with fills that are of type SOLID
-    const selection = figma.currentPage.selection.filter(
-      (node) => node.fills.length > 0 && node.fills[0].type === 'SOLID'
-    );
+  const fills = findFills(figma.currentPage.selection);
 
-    // Filter out the first fills of each node
-    const fills = selection.map((node) => node.fills[0]);
-
+  if (fills.length > 1) {
     // The channel values have been normalized to be between 0 and 1
     foregroundColor = getRGB(fills[0].color);
     foregroundAlpha = fills[0].opacity;
@@ -122,8 +135,15 @@ figma.on('selectionchange', () => {
     backgroundAlpha = fills[1].opacity;
 
     calculateAndSendContrast(foregroundColor, foregroundAlpha, backgroundColor);
-  } else {
-    console.log('Select at least 2 layers');
+  }
+
+  if (fills.length === 1) {
+    const fills = findFills(figma.currentPage.selection);
+
+    foregroundColor = getRGB(fills[0].color);
+    foregroundAlpha = fills[0].opacity;
+
+    calculateAndSendContrast(foregroundColor, foregroundAlpha, backgroundColor);
   }
 });
 
@@ -144,3 +164,7 @@ figma.ui.onmessage = (msg) => {
     }
   }
 };
+
+// Call on plugin start
+figma.showUI(__html__, { width: 340, height: 405 });
+calculateAndSendContrast(foregroundColor, foregroundAlpha, backgroundColor);
