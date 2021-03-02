@@ -1,0 +1,37 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.FAIL {
+  color: #f34242;
+}
+
+.AA {
+  color: #6bbe96;
+}
+
+.AAA {
+  color: #00da71;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  background-color: #fbfbfb;
+  display: grid;
+  row-gap: 16px;
+  padding: 16px;
+  justify-items: center;
+  align-content: start;
+}
