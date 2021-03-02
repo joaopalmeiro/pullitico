@@ -15,7 +15,7 @@ module.exports = (env, argv) => ({
 
   module: {
     rules: [
-      // Enables including CSS by doing "import './file.css'" in your TypeScript code
+      // Enables including CSS by doing "import './file.css'" in your JavaScript code
       { test: /\.css$/, use: ['style-loader', { loader: 'css-loader' }] },
 
       // Allows you to use "<%= require('./file.svg') %>" in your HTML code to get a data URI
