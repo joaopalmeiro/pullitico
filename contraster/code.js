@@ -2,7 +2,9 @@ figma.showUI(__html__);
 
 let foregroundColor;
 let foregroundAlpha;
+
 let backgroundColor;
+let backgroundAlpha;
 
 function convertRgbToHex(color) {
   const hex = color
@@ -84,7 +86,7 @@ function sendContrastInfo(contrast, foreground, background) {
   });
 }
 
-function calculateContrast(foreground, alpha, background) {
+function calculateAndSendContrast(foreground, alpha, background) {
   if (alpha < 1) {
     foreground = overlay(foreground, alpha, background);
   }
@@ -100,7 +102,7 @@ function calculateContrast(foreground, alpha, background) {
   // Round to two decimal places
   contrast = Math.floor(contrast * 100) / 100;
 
-  return contrast;
+  return sendContrastInfo(contrast, foreground, background);
 }
 
 figma.on('selectionchange', () => {
@@ -117,11 +119,28 @@ figma.on('selectionchange', () => {
     foregroundColor = getRGB(fills[0].color);
     foregroundAlpha = fills[0].opacity;
     backgroundColor = getRGB(fills[1].color);
+    backgroundAlpha = fills[1].opacity;
 
-    const contrast = calculateContrast(foregroundColor, foregroundAlpha, backgroundColor);
-
-    sendContrastInfo(contrast, foregroundColor, backgroundColor);
+    calculateAndSendContrast(foregroundColor, foregroundAlpha, backgroundColor);
   } else {
     console.log('Select at least 2 layers');
   }
 });
+
+figma.ui.onmessage = (msg) => {
+  if (msg.type === 'swap') {
+    if (figma.currentPage.selection.length > 1) {
+      // Destructuring Assignment Array Matching
+      [foregroundColor, backgroundColor, foregroundAlpha, backgroundAlpha] = [
+        backgroundColor,
+        foregroundColor,
+        backgroundAlpha,
+        foregroundAlpha,
+      ];
+
+      // It is necessary to recalculate the contrast to handle the foreground opacity.
+      // The contrast ratio between two solid colors never changes.
+      calculateAndSendContrast(foregroundColor, foregroundAlpha, backgroundColor);
+    }
+  }
+};

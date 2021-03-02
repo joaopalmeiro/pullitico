@@ -9,6 +9,7 @@
 - [Node Types](https://www.figma.com/plugin-docs/api/nodes/).
 - Luminance is the apparent brightness of a color.
 - "To calculate contrast with opacity we have to make a new solid colour by blending the two colours (...) then calculate the contrast between this new foreground colour (...) and the background colour (...). The problem is if the _background_ has opacity we can't determine what colour is _behind_ it to know what new colour to make. This means we can only reliably calculate the contrast if the opacity is on the foreground colour."
+- "(...) the order of the layers in `figma.currentPage.selection` is _basically random_ so we can’t reliably pick which layer will be which."
 
 ## References
 
@@ -18,3 +19,4 @@
 - [Figma Plugin Tutorial (3/6)](https://alcohollick.com/writing/figma-plugin-tutorial-3-6).
 - [Heroicons](https://heroicons.com/).
 - [Figma Plugin Tutorial (4/6)](https://alcohollick.com/writing/figma-plugin-tutorial-4-6).
+- [Figma Plugin Tutorial (5/6)](https://alcohollick.com/writing/figma-plugin-tutorial-5-6).
