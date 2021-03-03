@@ -149,19 +149,17 @@ figma.on('selectionchange', () => {
 
 figma.ui.onmessage = (msg) => {
   if (msg.type === 'swap') {
-    if (figma.currentPage.selection.length > 1) {
-      // Destructuring Assignment Array Matching
-      [foregroundColor, backgroundColor, foregroundAlpha, backgroundAlpha] = [
-        backgroundColor,
-        foregroundColor,
-        backgroundAlpha,
-        foregroundAlpha,
-      ];
+    // Destructuring Assignment Array Matching
+    [foregroundColor, backgroundColor, foregroundAlpha, backgroundAlpha] = [
+      backgroundColor,
+      foregroundColor,
+      backgroundAlpha,
+      foregroundAlpha,
+    ];
 
-      // It is necessary to recalculate the contrast to handle the foreground opacity.
-      // The contrast ratio between two solid colors never changes.
-      calculateAndSendContrast(foregroundColor, foregroundAlpha, backgroundColor);
-    }
+    // It is necessary to recalculate the contrast to handle the foreground opacity.
+    // The contrast ratio between two solid colors never changes.
+    calculateAndSendContrast(foregroundColor, foregroundAlpha, backgroundColor);
   }
 };
 

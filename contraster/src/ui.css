@@ -10,7 +10,15 @@ h2,
 h3,
 h4,
 h5 {
-  font-family: Arial, Helvetica, sans-serif;
+  /* Source: https://tachyons.io/docs/typography/font-family/ */
+  font-family: -apple-system, BlinkMacSystemFont, 'avenir next', avenir, helvetica, 'helvetica neue',
+    ubuntu, roboto, noto, 'segoe ui', arial, sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+.code {
+  /* Source: https://tachyons.io/docs/typography/font-family/ */
+  font-family: Consolas, monaco, monospace;
 }
 
 .FAIL {
@@ -77,6 +85,8 @@ h5 {
 #swap {
   cursor: pointer;
   justify-self: center;
+  height: 24px;
+  width: 24px;
 }
 
 #swap:hover {
