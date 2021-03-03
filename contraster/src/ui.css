@@ -87,6 +87,7 @@ h5 {
   justify-self: center;
   height: 24px;
   width: 24px;
+  stroke: #636363;
 }
 
 #swap:hover {

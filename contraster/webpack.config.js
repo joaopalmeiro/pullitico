@@ -19,7 +19,8 @@ module.exports = (env, argv) => ({
       { test: /\.css$/, use: ['style-loader', { loader: 'css-loader' }] },
 
       // More info: https://webpack.js.org/guides/asset-modules/
-      { test: /\.svg/, type: 'asset/inline' },
+      // { test: /\.svg/, type: 'asset/inline' }, // Data URI
+      { test: /\.svg/, type: 'asset/source' }, // "Inline" SVG
     ],
   },
 

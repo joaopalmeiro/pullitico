@@ -9,7 +9,9 @@
       <div class="color-box shadow background-color"></div>
       <p id="bg-value" class="code">000000</p>
     </div>
-    <img id="swap" src="<%= require('./switch-horizontal.svg') %>" />
+    <!-- Webpack: `{ test: /\.svg/, type: 'asset/source' }` (data URI) -->
+    <!-- <img id="swap" src="<%= require('./switch-horizontal.svg') %>" /> -->
+    <%= require('./switch-horizontal.svg') %>
     <div class="color">
       <div class="color-box shadow foreground-color"></div>
       <p id="fg-value" class="code">ffffff</p>
