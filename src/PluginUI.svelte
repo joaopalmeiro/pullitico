@@ -5,4 +5,4 @@
   let searchValue = "";
 </script>
 
-<div><Input bind:value={searchValue} /></div>
+<div class="p-xxsmall"><Input bind:value={searchValue} /></div>
