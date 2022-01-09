@@ -7,5 +7,10 @@
 
 <!-- https://github.com/thomas-lowry/figma-plugin-ds-svelte/blob/master/src/global.css -->
 <div class="wrapper p-xxsmall">
-  <Input bind:value={searchValue} iconName={IconSearch} />
+  <!-- https://github.com/thomas-lowry/figma-plugin-ds-svelte#Input -->
+  <Input
+    bind:value={searchValue}
+    iconName={IconSearch}
+    placeholder="Search..."
+  />
 </div>
