@@ -1,7 +1,0 @@
-{
-  "name": "contraster",
-  "id": "946840227695968326",
-  "api": "1.0.0",
-  "main": "dist/code.js",
-  "ui": "dist/ui.html"
-}
