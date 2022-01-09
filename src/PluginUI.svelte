@@ -1,8 +1,11 @@
 <script>
   import { GlobalCSS } from "figma-plugin-ds-svelte";
-  import { Input } from "figma-plugin-ds-svelte";
+  import { Input, IconSearch } from "figma-plugin-ds-svelte";
 
   let searchValue = "";
 </script>
 
-<div class="p-xxsmall"><Input bind:value={searchValue} /></div>
+<!-- https://github.com/thomas-lowry/figma-plugin-ds-svelte/blob/master/src/global.css -->
+<div class="wrapper p-xxsmall">
+  <Input bind:value={searchValue} iconName={IconSearch} />
+</div>
