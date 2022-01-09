@@ -5,11 +5,15 @@
 // - https://github.com/sveltejs/template/blob/master/rollup.config.js
 // - https://svelte.dev/docs#compile-time-svelte-compile
 // - https://www.npmjs.com/package/rollup-plugin-copy
-import svelte from "rollup-plugin-svelte";
-import resolve from "@rollup/plugin-node-resolve";
+// - https://www.npmjs.com/package/rollup-plugin-postcss
 import commonjs from "@rollup/plugin-commonjs";
-import { terser } from "rollup-plugin-terser";
+import resolve from "@rollup/plugin-node-resolve";
+import cssnano from "cssnano";
 import htmlBundle from "rollup-plugin-html-bundle";
+import postcss from "rollup-plugin-postcss";
+import svelte from "rollup-plugin-svelte";
+import svg from "rollup-plugin-svg";
+import { terser } from "rollup-plugin-terser";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -30,6 +34,11 @@ export default [
       }),
       resolve(),
       commonjs(),
+      svg(),
+      postcss({
+        extensions: [".css"],
+        plugins: [cssnano()],
+      }),
       htmlBundle({
         template: "src/template.html",
         target: "public/ui.html",

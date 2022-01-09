@@ -22,7 +22,7 @@
 - [Uninstall pnpm](https://pnpm.io/uninstall).
 - `volta install pnpm` (and reload the terminal). `pnpm node -v`.
 - [Figma Plugin DS Svelte](https://github.com/thomas-lowry/figma-plugin-ds-svelte) (UI kit).
-- `pnpm add -D svelte rollup rollup-plugin-svelte @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-plugin-terser rollup-plugin-html-bundle`.
+- `pnpm add -D svelte rollup rollup-plugin-svelte @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-plugin-terser rollup-plugin-html-bundle rollup-plugin-postcss cssnano postcss rollup-plugin-svg`.
 
 ## References
 
