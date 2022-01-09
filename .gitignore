@@ -106,5 +106,7 @@ formatter.css
 
 # Figma plugin
 public/index.html
+public/ui.html
+public/code.js
 src/build/
 public/build/

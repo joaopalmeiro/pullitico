@@ -32,10 +32,20 @@ export default [
       commonjs(),
       htmlBundle({
         template: "src/template.html",
-        target: "public/index.html",
+        target: "public/ui.html",
         inline: true,
       }),
       production && terser(),
     ],
+  },
+  // code.js
+  {
+    input: "src/code.js",
+    output: {
+      file: "public/code.js",
+      format: "cjs",
+      name: "code",
+    },
+    plugins: [commonjs(), production && terser()],
   },
 ];
