@@ -6,6 +6,8 @@
 // - https://svelte.dev/docs#compile-time-svelte-compile
 // - https://www.npmjs.com/package/rollup-plugin-copy
 // - https://www.npmjs.com/package/rollup-plugin-postcss
+// - https://github.com/rollup/plugins/tree/master/packages/json
+// - https://stackoverflow.com/a/61652895
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
 import cssnano from "cssnano";
@@ -14,6 +16,7 @@ import postcss from "rollup-plugin-postcss";
 import svelte from "rollup-plugin-svelte";
 import svg from "rollup-plugin-svg";
 import { terser } from "rollup-plugin-terser";
+import json from "@rollup/plugin-json";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -34,6 +37,9 @@ export default [
       }),
       resolve(),
       commonjs(),
+      json({
+        compact: true,
+      }), // Optional
       svg(),
       postcss({
         extensions: [".css"],

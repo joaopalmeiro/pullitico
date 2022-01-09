@@ -110,3 +110,5 @@ public/ui.html
 public/code.js
 src/build/
 public/build/
+logos.json
+src/logos/test.svg
