@@ -38,3 +38,13 @@
 - [Figma Plugin Tutorial (6/6)](https://alcohollick.com/writing/figma-plugin-tutorial-6-6).
 - [Bundling with Webpack](https://www.figma.com/plugin-docs/bundling-webpack/).
 - [Vector Logos - Figma Plugin](https://github.com/kevinwuhoo/vector-logos-figma-plugin).
+- [Eleições Passadas (Portal do Eleitor)](https://www.portaldoeleitor.pt/Paginas/EleicoesPassadas.aspx).
+- [Eleições (SGMAI)](https://www.eleicoes.mai.gov.pt/).
+- [Eleições Autárquicas 2021 (CNE)](https://www.cne.pt/content/eleicoes-autarquicas-2021).
+- [Eleições Autárquicas 2021 (SGMAI)](https://www.eleicoes.mai.gov.pt/autarquicas2021/).
+- [Autarquias Locais - 26 de setembro de 2021 (SGMAI)](https://www.sg.mai.gov.pt/AdministracaoEleitoral/EleicoesReferendos/AutarquiasLocais/Paginas/default.aspx?FirstOpen=1).
+
+### Logos
+
+- [Eleições Autárquicas 2021](https://www.eleicoes.mai.gov.pt/autarquicas2021/assets/static/files/electionImage.svg)
+  - Path: `src/logos/raw/autarquicas2021.svg`
