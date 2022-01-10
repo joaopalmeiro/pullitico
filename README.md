@@ -23,6 +23,8 @@
 - `volta install pnpm` (and reload the terminal). `pnpm node -v`.
 - [Figma Plugin DS Svelte](https://github.com/thomas-lowry/figma-plugin-ds-svelte) (UI kit).
 - `pnpm add -D svelte rollup rollup-plugin-svelte @rollup/plugin-node-resolve @rollup/plugin-commonjs rollup-plugin-terser rollup-plugin-html-bundle rollup-plugin-postcss cssnano postcss rollup-plugin-svg`.
+- [Figma API reference](https://www.figma.com/plugin-docs/api/api-reference/).
+- `Command`+`P`: Use quick actions ([Figma](https://help.figma.com/hc/en-us/articles/360040328653-Use-shortcuts-and-quick-actions#Quick_actions)).
 
 ## References
 
