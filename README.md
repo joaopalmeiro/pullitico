@@ -47,4 +47,6 @@
 ### Logos
 
 - [Eleições Autárquicas 2021](https://www.eleicoes.mai.gov.pt/autarquicas2021/assets/static/files/electionImage.svg)
-  - Path: `src/logos/raw/autarquicas2021.svg`
+  - Raw: `src/logos/raw/autarquicas2021.svg`
+- [Volt Portugal](https://www.voltportugal.org/volt-logo.svg) ([CNE](https://www.cne.pt/partido/volt-portugal))
+  - Raw: `src/logos/raw/volt.svg`
