@@ -50,3 +50,9 @@
   - Raw: `src/logos/raw/autarquicas2021.svg`
 - [Volt Portugal](https://www.voltportugal.org/volt-logo.svg) ([CNE](https://www.cne.pt/partido/volt-portugal))
   - Raw: `src/logos/raw/volt.svg`
+- [Nós, Cidadãos!](https://noscidadaos.pt/o-nos-cidadaos/regulamentos-e-documentos/) ([CNE](https://www.cne.pt/partido/nos-cidadaos))
+  - Raw: `src/logos/raw/noscidadaos.ai`
+- [PS](https://ps.pt/elementos-graficos/) ([CNE](https://www.cne.pt/partido/partido-socialista))
+  - Raw: `src/logos/raw/ps.ai`
+- [Bloco de Esquerda](https://www.bloco.org/o-bloco/manual-de-normas-gr%C3%A1ficas.html) ([CNE](https://www.cne.pt/partido/bloco-de-esquerda))
+  - Raw: `src/logos/raw/be.pdf`
