@@ -1,4 +1,6 @@
-# figma-playground
+# pullitico
+
+A Figma plugin to get logos of Portuguese political parties and other related entities.
 
 ## Development
 

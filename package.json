@@ -1,5 +1,6 @@
 {
-  "name": "figma-svelte-demo",
+  "name": "pullitico",
+  "description": "A Figma plugin to get logos of Portuguese political parties and other related entities.",
   "version": "0.0.1",
   "license": "MIT",
   "private": true,
