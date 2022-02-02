@@ -58,3 +58,5 @@ A Figma plugin to get logos of Portuguese political parties and other related en
   - Raw: `src/logos/raw/ps.ai`
 - [Bloco de Esquerda](https://www.bloco.org/o-bloco/manual-de-normas-gr%C3%A1ficas.html) ([CNE](https://www.cne.pt/partido/bloco-de-esquerda))
   - Raw: `src/logos/raw/be.pdf`
+- [PAN](https://www.pan.com.pt/files/themes/pan_theme/assets/images/PAN_logo.svg) ([CNE](https://www.cne.pt/partido/pessoas-animais-natureza))
+  - Raw: `src/logos/raw/pan.svg`
